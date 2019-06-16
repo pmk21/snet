@@ -26,4 +26,4 @@ class BatchIterator(DataIterator):
             end = start + self.batch_size
             batch_inputs = inputs[start:end]
             batch_targets = targets[start:end]
-            yield [("inputs", batch_inputs), ("targets", batch_targets)]
+            yield {"inputs":batch_inputs, "targets", batch_targets}
