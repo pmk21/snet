@@ -19,6 +19,7 @@ class BatchIterator(DataIterator):
 
     def __call__(self, inputs, targets):
         starts = np.arange(0, len(inputs), self.batch_size)
+        
         if self.shuffle:
             np.random.shuffle(starts)
         
@@ -26,4 +27,4 @@ class BatchIterator(DataIterator):
             end = start + self.batch_size
             batch_inputs = inputs[start:end]
             batch_targets = targets[start:end]
-            yield {"inputs":batch_inputs, "targets", batch_targets}
+            yield {"inputs":batch_inputs, "targets":batch_targets}

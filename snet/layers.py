@@ -13,7 +13,7 @@ import numpy as np
 from snet.tensor import Tensor
 
 class Layer:
-    def init(self):
+    def __init__(self):
         self.params = {}
         self.grads = {}
 
@@ -40,6 +40,7 @@ class Linear(Layer):
         self.params['b'] = np.random.randn(output_size)
 
     def forward(self, inputs):
+        self.inputs = inputs
         return inputs @ self.params['w'] + self.params['b']
     
     def backward(self, grad):
@@ -72,7 +73,7 @@ class Activation(Layer):
         self.inputs = inputs
         return self.f(inputs)
     
-    def backward(self):
+    def backward(self, grad):
         """
             if y = f(x) and x = g(z)
             then dy/dz = f'(x) * g'(z)
